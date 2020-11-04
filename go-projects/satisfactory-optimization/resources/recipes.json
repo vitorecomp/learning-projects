@@ -1,0 +1,31 @@
+[
+    {
+        "name": "iron-ingot",
+        "recipes": [
+            {
+                "name": "simple",
+                "result": 1,
+                "resources": [
+                    {
+                        "name":"iron-ore",
+                        "amount": 1
+                    }
+                ]
+            },
+            {
+                "name": "alternate 1",
+                "result": 2,
+                "resources": [
+                    {
+                        "name":"iron-ore",
+                        "amount": 1
+                    },
+                    {
+                        "name":"copper-ore",
+                        "amount": 1
+                    }
+                ]
+            }
+        ]
+    }
+]
