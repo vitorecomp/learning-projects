@@ -1,30 +1,38 @@
 [
     {
-        "name": "iron-ingot",
-        "recipes": [
+        "result": "iron-ingot",
+        "name": "recipe-iron-ingot",
+        "amount": 1,
+        "resources": [
             {
-                "name": "simple",
-                "result": 1,
-                "resources": [
-                    {
-                        "name":"iron-ore",
-                        "amount": 1
-                    }
-                ]
+                "result":"iron-ore",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "result": "iron-ingot",
+        "name": "recipe-alternate 1-iron-ingot",
+        "amount": 2,
+        "resources": [
+            {
+                "result":"iron-ore",
+                "amount": 1
             },
             {
-                "name": "alternate 1",
-                "result": 2,
-                "resources": [
-                    {
-                        "name":"iron-ore",
-                        "amount": 1
-                    },
-                    {
-                        "name":"copper-ore",
-                        "amount": 1
-                    }
-                ]
+                "result":"copper-ore",
+                "amount": 1
+            }
+        ]
+    },
+    {
+        "result": "iron-plate",
+        "name": "recipe-iron-plate",
+        "amount": 1,
+        "resources": [
+            {
+                "result":"iron-ingot",
+                "amount": 1
             }
         ]
     }
