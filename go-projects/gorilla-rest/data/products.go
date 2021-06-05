@@ -4,17 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"regexp"
+
+	"github.com/go-playground/validator"
 )
-
-func UnmarshalProduct(data []byte) (Product, error) {
-	var r Product
-	err := json.Unmarshal(data, &r)
-	return r, err
-}
-
-func (r *Product) Marshal() ([]byte, error) {
-	return json.Marshal(r)
-}
 
 func (p *Products) ToJson(w io.Writer) error {
 	e := json.NewEncoder(w)
@@ -26,9 +19,27 @@ func (p *Product) FromJson(r io.Reader) error {
 	return e.Decode(p)
 }
 
+func (p *Product) Validate() error {
+	validate := validator.New()
+	validate.RegisterValidation("sku", validateSKU)
+	return validate.Struct(p)
+}
+
+func validateSKU(fl validator.FieldLevel) bool {
+	re := regexp.MustCompile(`[a-z]+-[a-z]+-[a-z]+`)
+	matches := re.FindAllString(fl.Field().String(), -1)
+	return len(matches) == 1
+}
+
 type Product struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID          int     `json:"id"`
+	Name        string  `json:"name" validate:"required"`
+	Description string  `json:"description"`
+	Price       float32 `json:"price" validate:"gte=0"`
+	SKU         string  `json:"sku" validate:"required, sku"`
+	CreatedOn   string  `json:"-"`
+	UpdatedOn   string  `json:"-"`
+	DeleteOn    string  `json:"-"`
 }
 
 type Products []*Product
