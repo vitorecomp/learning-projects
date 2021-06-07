@@ -9,6 +9,19 @@ import (
 	"github.com/go-playground/validator"
 )
 
+type Product struct {
+	ID          int     `json:"id"`
+	Name        string  `json:"name" validate:"required"`
+	Description string  `json:"description"`
+	Price       float32 `json:"price" validate:"gte=0"`
+	SKU         string  `json:"sku" validate:"required, sku"`
+	CreatedOn   string  `json:"-"`
+	UpdatedOn   string  `json:"-"`
+	DeleteOn    string  `json:"-"`
+}
+
+type Products []*Product
+
 func (p *Products) ToJson(w io.Writer) error {
 	e := json.NewEncoder(w)
 	return e.Encode(p)
@@ -30,19 +43,6 @@ func validateSKU(fl validator.FieldLevel) bool {
 	matches := re.FindAllString(fl.Field().String(), -1)
 	return len(matches) == 1
 }
-
-type Product struct {
-	ID          int     `json:"id"`
-	Name        string  `json:"name" validate:"required"`
-	Description string  `json:"description"`
-	Price       float32 `json:"price" validate:"gte=0"`
-	SKU         string  `json:"sku" validate:"required, sku"`
-	CreatedOn   string  `json:"-"`
-	UpdatedOn   string  `json:"-"`
-	DeleteOn    string  `json:"-"`
-}
-
-type Products []*Product
 
 func GetProducts() Products {
 	return productList

@@ -1,3 +1,17 @@
+// Package classification of Product API
+//
+// Documentation for Product API
+//
+// Schemes: http
+// BasePath: /products
+// Version: 1.0.0
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+// swagger:meta
 package handlers
 
 import (
@@ -19,6 +33,20 @@ func NewProduct(l *log.Logger) *Products {
 	return &Products{l}
 }
 
+// A list of products returned in a the response
+// swagger:response productsResponse
+type productsResponse struct {
+	// All products in the system
+	// in: body
+	Body []data.Product
+}
+
+// swagger:route GET /products products listProducts
+// Return a list of products
+// responses:
+// 200: productsResponse
+
+// GetProducts returns the list of products from the data storage
 func (p *Products) GetProducts(w http.ResponseWriter, r *http.Request) {
 	p.l.Println("Handle GET product")
 	lp := data.GetProducts()
