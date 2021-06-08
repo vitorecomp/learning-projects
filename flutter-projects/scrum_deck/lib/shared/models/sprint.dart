@@ -11,12 +11,12 @@ String sprintToJson(Sprint data) => json.encode(data.toJson());
 
 class Sprint {
   Sprint({
-    required this.id,
+    this.id,
     required this.nome,
     required this.link,
   });
 
-  int id;
+  int? id;
   String nome;
   String link;
 
@@ -26,9 +26,8 @@ class Sprint {
     link: json["link"],
   );
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
+  String toJson() => jsonEncode({
     "nome": nome,
     "link": link,
-  };
+  });
 }

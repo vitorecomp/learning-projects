@@ -12,8 +12,9 @@ class SprintApi {
   SprintApi(this._client);
 
   Future<List<Sprint>> fetchSprints() async {
-    final response = await _client.get(Uri.parse('${Constants.API_BASE_URL}/$PATH'));
-    if(response.statusCode >= 200 && response.statusCode < 300){
+    final response =
+        await _client.get(Uri.parse('${Constants.API_BASE_URL}/$PATH'));
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       final List<dynamic> jSprints = json.decode(response.body);
       final sprints = jSprints.map((js) => Sprint.fromJson(js)).toList();
       return sprints;
@@ -24,13 +25,37 @@ class SprintApi {
     print(response.body);
     throw Exception("Falha ao buscar sprints");
   }
+
   Future<Sprint> getSprint() async {
     throw UnimplementedError();
   }
-  deleteSprint() async {
-    throw UnimplementedError();
+
+  deleteSprint(id) async {
+    final response =
+        await _client.delete(Uri.parse('${Constants.API_BASE_URL}/$PATH/$id'));
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return;
+    }
+
+    print("Error ao deletar sprints");
+    print(response.statusCode);
+    print(response.body);
+    throw Exception("Falha ao deletar sprints");
   }
-  Future<Sprint> addSprint() async {
-    throw UnimplementedError();
+
+  addSprint(Sprint sprint) async {
+    sprint.toJson();
+    final response = await _client.post(
+        Uri.parse('${Constants.API_BASE_URL}/$PATH'),
+        headers: {"Content-Type": "application/json"},
+        body: sprint.toJson());
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return;
+    }
+
+    print("Error ao salvar sprints");
+    print(response.statusCode);
+    print(response.body);
+    throw Exception("Falha ao salvar sprints");
   }
 }
