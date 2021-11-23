@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Store App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home_fragment_main_text">main fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="settings_main_text">settings fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favorites_main_text">favorites fragment</string>
+    <string name="settings_buttom_text">settings</string>
+</resources>
