@@ -1,0 +1,15 @@
+[package]
+name = "panic"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+
+# this will provide a faster way of panic, and produce a smaller binary
+# meanwhile it will no clean the memory, leaving it to the deployment
+
+[profile.release]
+panic = 'abort'
