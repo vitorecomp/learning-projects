@@ -1,7 +1,7 @@
 use substring::Substring;
 
 fn main() {
-        let text : String = "hello world.hello world hello world".to_string();
+        let text : String = "hello world.hello wor.ld hello world".to_string();
         let rules = vec![" ", ".", ","];
         let dict_tokens : Vec<String> = vec!["world.hello".to_string()];
     
