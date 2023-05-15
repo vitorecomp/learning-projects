@@ -1,0 +1,10 @@
+#cargo test -p add_one
+#cargo test -> will test every body
+#cargo add regex -> will add the dependencies to every body
+
+[workspace]
+
+members = [
+    "adder",
+    "add_one"
+]
