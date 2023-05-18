@@ -6,7 +6,12 @@ fn main() {
     let re = Regex::new(r#"(\S*).*\[(.*)\]\s"(\S*)\s(\S*)\s([^"]*)"\s(\S*)\s(\S*)"#).unwrap();
     
     for cap in re.captures_iter(text) {
-        println!("ip: {} date: {} method: {}", &cap[1], &cap[2], &cap[3]);
-        println!("route: {} protocol: {} response: {} response_time: {}", &cap[4], &cap[5], &cap[6], &cap[7]);
+        println!("ip: {}", &cap[1]);
+        println!("date: {}", &cap[2]);
+        println!("method: {}", &cap[3]);
+        println!("route: {}", &cap[4], );
+        println!("protocol: {}",  &cap[5], );
+        println!("response: {}",  &cap[6], );
+        println!("response_time: {}",&cap[7]);
     }
 }

@@ -92,7 +92,7 @@ fn main() {
                 tokens.push(((position - current_token.len(), sentence), current_token));
                 current_token = String::new();
             }
-            if (sentence_rules.contains(&character.to_string().as_str())) {
+            if sentence_rules.contains(&character.to_string().as_str()) {
                 sentence += 1;
             }
         } else {
